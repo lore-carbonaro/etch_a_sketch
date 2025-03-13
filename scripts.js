@@ -1,7 +1,9 @@
 const body = document.querySelector("body")
 const button = document.createElement("button");
 button.classList.add("btn");
+button.textContent = "Create a grid!";
 body.appendChild(button);
+
 
 /* Create grid */
 function makeGrid(size) {
@@ -19,7 +21,6 @@ function makeGrid(size) {
 }
 
 
-
 /* Clear container */
 function clearBox(elementID)
 {
@@ -27,8 +28,24 @@ function clearBox(elementID)
 }
 
 
+/* Function to get random color */
+function randomHsl() {
+    return 'hsla(' + (Math.random() * 360) + ', 100%, 50%, 1)';
+}
 
-/* User input to create grid */
+
+/* Function that gives cells a different color when moused over */
+function colorCells() {
+    const cell = document.querySelectorAll(".cell");
+    for(let i = 0; i < cell.length; i++) {
+        cell[i].addEventListener("mouseover", () => {
+        cell[i].style.backgroundColor = randomHsl();
+        });
+    }
+}
+
+
+/* Initialize */
 button.addEventListener("click", () => {
     clearBox("#container");
     let size = prompt("How big should the grid be?");
@@ -37,12 +54,6 @@ button.addEventListener("click", () => {
         alert("Too big, please choose a smaller value");
     } else {
         makeGrid(size);
-        const cell = document.querySelectorAll(".cell");
-
-        for(let i = 0; i < cell.length; i++) {
-            cell[i].addEventListener("mouseenter", () => {
-            cell[i].style.backgroundColor = "black";
-            });
-        }
+        colorCells();
     }
-})
+});
