@@ -28,9 +28,15 @@ function clearBox(elementID)
 }
 
 
+/* Function to get random number in specified range */
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
+}
+
+
 /* Function to get random color */
 function randomHsl() {
-    return 'hsla(' + (Math.random() * 360) + ', 100%, 50%, 1)';
+    return 'hsla(' + getRandomArbitrary(255, 280) + ', ' + getRandomArbitrary(50, 75) + '%, ' + getRandomArbitrary(25, 75) + '%, 1)';
 }
 
 
